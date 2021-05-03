@@ -1,2 +1,2 @@
-# spendingsAnalyzer
-Spendings analyzer for bank exports in csv
+# spendings-analyzer
+Spendings analyzer for export from local bank app
