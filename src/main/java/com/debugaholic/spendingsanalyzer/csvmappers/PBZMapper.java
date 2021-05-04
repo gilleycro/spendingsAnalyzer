@@ -8,33 +8,32 @@ import lombok.NoArgsConstructor;
 
 import java.lang.reflect.Array;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class PBZMapper extends MapperObject{
 
-	private Date date;
 	private TransactionTypePBZ transactionType;
-	private String paymentDescription;
-	private Double value;
-	private Currency currency;
 
+	//TODO move this logic from constructor
 	public PBZMapper(String[] parsedArr) {
+		NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
+
 		try {
-			date = convertDate(parsedArr[0].trim());
+			this.setDate(convertDate(parsedArr[0].trim()));
+			this.setValue(format.parse(parsedArr[3].trim()).doubleValue());
+
 		} catch (ParseException exception){
 			//TODO handle this
 		}
 		//TODO add enums and handle errors
-		transactionType = TransactionTypePBZ.UNKNOWN;
-		paymentDescription = parsedArr[2].trim();
-		value = Double.valueOf(parsedArr[3].trim());
-		currency = Currency.valueOf(parsedArr[4].trim());
+		this.setTransactionType(TransactionTypePBZ.UNKNOWN);
+		this.setPaymentDescription(parsedArr[2].trim());
+		this.setCurrency(Currency.valueOf(parsedArr[4].trim()));
 	}
 
 	private Date convertDate(String dateString) throws ParseException {

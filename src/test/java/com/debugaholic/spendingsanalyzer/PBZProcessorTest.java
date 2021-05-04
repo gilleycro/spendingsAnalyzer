@@ -1,6 +1,7 @@
 package com.debugaholic.spendingsanalyzer;
 
 import com.debugaholic.spendingsanalyzer.csvmappers.MapperObject;
+import com.debugaholic.spendingsanalyzer.exception.CSVParsingFailedException;
 import com.debugaholic.spendingsanalyzer.processor.PBZProcessor;
 import com.debugaholic.spendingsanalyzer.processor.Processor;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,7 @@ public class PBZProcessorTest {
 	}
 
 	@Test
-	public void testProcessorWithDummyCSV(){
+	public void testProcessorWithDummyCSV() throws CSVParsingFailedException {
 		List<MapperObject> mapperObject = processor.processCSV("src/main/resources/test.csv");
 		Assert.notEmpty(mapperObject, "List of mapper objects must not be empty");
 	}

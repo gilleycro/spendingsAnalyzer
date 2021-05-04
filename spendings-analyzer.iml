@@ -16,6 +16,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="entityManagerFactory" />
+          <factory-entry name="spendings-analyzer" value="a2ed999a-d8fc-46d3-9137-22e1e6c17258" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
